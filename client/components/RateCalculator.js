@@ -32,15 +32,30 @@ class RateCalculator extends React.Component {
     const { rates } = this.props;
     const { rate, amount } = this.state;
     return (
-      <div style={{dispaly: "flex"}}>
+      <div style={{margin: "5px",
+        padding: "10px",
+        border: "solid gray 1px",
+        borderRadius: "5px"}}>
         <h1> Currency Rate Calc </h1>
-        <FormControl componentClass="select" placeholder="select" onChange={(evt) => this.setState( { rate: evt.target.value})}>
-          {Object.keys(rates).map(curr =>
-            <option value={rates[curr]}>{curr}</option>
-          )}
-        </FormControl>
-        <input onChange={(evt) => this.setState( { amount: evt.target.value})}></input>
-        <div>{(rate * amount).toLocaleString()} in USD</div>
+
+        <div style={{display: "flex"}}>
+          <FormControl
+                style={{ width: "33%", margin: "3px", padding: "3px"}}
+                componentClass="select" placeholder="select"
+                onChange={(evt) => this.setState( { rate: evt.target.value})}>
+            {Object.keys(rates).map(curr =>
+              <option value={rates[curr]}>{curr}</option>
+            )}
+          </FormControl>
+          <input
+            style={{ width: "33%", margin: "3px"}}
+            onChange={(evt) => this.setState( { amount: evt.target.value})}></input>
+          <div
+            style={{ display: "flex", width: "33%", margin: "3px", border: "1px solid gray", borderRadius: "5px",
+              alignItems: "center",
+              padding: "3px"}}>
+            {(rate * amount).toLocaleString()} in USD</div>
+        </div>
       </div>
     );
   }
